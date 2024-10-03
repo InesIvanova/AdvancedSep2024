@@ -1,0 +1,57 @@
+# First row winner
+A
+B
+X
+1
+4
+2
+5
+3
+
+# First column winner
+A
+B
+X
+1
+2
+4
+3
+7
+
+
+# First diagonal
+A
+B
+X
+1
+2
+5
+3
+9
+
+
+# Second diagonal
+A
+B
+X
+3
+1
+5
+2
+7
+
+
+
+# Draw case
+a
+b
+x
+1
+2
+4
+7
+3
+5
+8
+6
+9
