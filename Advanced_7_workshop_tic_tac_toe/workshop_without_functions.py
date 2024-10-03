@@ -26,6 +26,7 @@ board = [[" ", " ", " "] for _ in range(3)]
 print(f"{player_one[0]} starts first!")
 turns = 1
 current_player = None
+result = None
 
 while True:
     current_player = player_one if turns % 2 != 0 else player_two
@@ -100,9 +101,15 @@ while True:
                 second_diagonal,
             ]
         ):
-            print(f"{current_player[0]} won!")
+
+            result = f"{current_player[0]} won!"
             break
 
         if turns == 9:
-            print("DRAW! No one wins!")
+            result = "DRAW! No one wins!"
             break
+
+print(result)
+
+with open("game_results.txt", "a") as file:
+    file.write(result + "\n")

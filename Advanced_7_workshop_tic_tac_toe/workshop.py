@@ -13,6 +13,11 @@ class UnavailablePositionError(Exception):
     pass
 
 
+def save_result(result):
+    with open("game_results.txt", "a") as file:
+        file.write(result + "\n")
+
+
 def is_winner(current_player, board):
     first_row = all([el == current_player[1] for el in board[0]])
     second_row = all([el == current_player[1] for el in board[1]])
@@ -118,6 +123,7 @@ board = [[" ", " ", " "] for _ in range(3)]
 print(f"{player_one[0]} starts first!")
 turns = 1
 current_player = None
+result = None
 
 while True:
     current_player = player_one if turns % 2 != 0 else player_two
@@ -136,11 +142,12 @@ while True:
         turns += 1
 
         if turns >= 6 and is_winner(current_player, board):
-            print(f"{current_player[0]} won")
+            result = f"{current_player[0]} won"
             break
 
         if turns == 10:
-            print("DRAW! No one wins!")
+            result = "DRAW! No one wins!"
             break
 
 
+save_result(result)
