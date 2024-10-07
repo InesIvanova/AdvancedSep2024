@@ -1,0 +1,2 @@
+class UnknownSignError(Exception):
+    pass

@@ -1,6 +1,6 @@
-import json
+from pyfiglet import figlet_format
+import numpy
 
-a = {"a": 1}
-
-with open("asd.txt", "w") as file:
-    file.write(json.dumps(a))
+print(numpy.sqrt)
+f = figlet_format("text to render", font="slant")
+print(f)

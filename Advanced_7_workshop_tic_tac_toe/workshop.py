@@ -69,7 +69,6 @@ def is_winner(current_player, board):
     )
 
 
-
 def check_position_availability(
     position: int, board: list[list[str]]
 ) -> tuple[int, int]:
