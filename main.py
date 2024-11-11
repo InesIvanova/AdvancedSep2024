@@ -1,44 +1,32 @@
-# class Shape:
-#     def calculate_area(self):
-#         return None
-#
-# class Square(Shape):
-#     side_length = 2
-#     def calculate_area(self):
-#         return self.side_length * 2
-#
-# class Triangle(Shape):
-#     base_length = 4
-#     height = 3
-#     def calculate_area(self):
-#         return 0.5 * self.base_length * self.height
-#
-#
-# class Rectangle(Shape):
-#     def calculate_area(self):
-#         return "rectangle area"
-#
-#
-# shapes = [Triangle(), Square(), Triangle(), Rectangle()]
-#
-# for shape in shapes:
-#     print(shape.calculate_area())
+from abc import ABC, abstractmethod
 
 
-class Person:
-    def __init__(self, name):
-        self.name = name
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
 
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, value):
-        if len(value) < 2:
-            raise ValueError
-        self.__name = value
+    def eat(self):
+        return "eating"
 
 
-p = Person("Test")
-p.name = "Test 2"
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+
+class Cat(Animal):
+    def sound(self):
+        return "meow"
+
+
+
+
+animals = [Dog(), Cat()]
+
+for a in animals:
+    print(a.sound())
+    print(a.eat())
+
+
+a = Animal()
