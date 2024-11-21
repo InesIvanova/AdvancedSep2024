@@ -1,44 +1,42 @@
-nums = [1, 2, 3, 4]
+class IntegerList:
+    def __init__(self, *args):
+        self.__data = []
+        for x in args:
+            if type(x) == int:
+                self.__data.append(x)
 
-iter_object = iter(nums)
-while True:
-    try:
-        print(next(iter_object))
-    except StopIteration:
-        break
+    def get_data(self):
+        return self.__data
 
+    def add(self, element):
+        if not type(element) == int:
+            raise ValueError("Element is not Integer")
+        self.get_data().append(element)
+        return self.get_data()
 
-iter_object = iter(nums)
+    def remove_index(self, index):
+        if index >= len(self.get_data()):
+            raise IndexError("Index is out of range")
+        a = self.get_data()[index]
+        del self.get_data()[index]
+        return a
 
-while True:
-    try:
-        print(next(iter_object))
-    except StopIteration:
-        break
-#
-# p = Person("Test")
-#
-#
-# print(len(p))
-# for el in p:
-#     print(el)
-#
-# class Person:
-#
-#     def __init__(self, name):
-#         self.name = name
-#         self.current_index=-1
-#
-#     def __len__(self):
-#         return len(self.name)
-#
-#     def __iter__(self):
-#         return self
-#
-#     def __next__(self):
-#         self.current_index += 1
-#         if self.current_index < len(self.name):
-#             return self.name[self.current_index]
-#         raise StopIteration()
-#
-# print("after for")
+    def get(self, index):
+        if index >= len(self.get_data()):
+            raise IndexError("Index is out of range")
+        return self.get_data()[index]
+
+    def insert(self, index, el):
+        if index >= len(self.get_data()):
+            raise IndexError("Index is out of range")
+        elif not type(el) == int:
+            raise ValueError("Element is not Integer")
+
+        self.get_data().insert(index, el)
+
+    def get_biggest(self):
+        a = sorted(self.get_data(), reverse=True)
+        return a[0]
+
+    def get_index(self, el):
+        return self.get_data().index(el)

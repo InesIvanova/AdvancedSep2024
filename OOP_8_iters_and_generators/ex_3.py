@@ -3,8 +3,9 @@ class vowels:
         self.text = text
         self.only_vowels = [el for el in self.text if el.lower() in 'aeuiyo']
         self.current_index = -1
+
     def __iter__(self):
-        return self
+        return self.only_vowels
 
     def __next__(self):
         self.current_index += 1
