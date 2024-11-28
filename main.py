@@ -1,42 +1,72 @@
-class IntegerList:
-    def __init__(self, *args):
-        self.__data = []
-        for x in args:
-            if type(x) == int:
-                self.__data.append(x)
+class Car:
+    def __init__(self, make, model, fuel_consumption, fuel_capacity):
+        self.make = make
+        self.model = model
+        self.fuel_consumption = fuel_consumption
+        self.fuel_capacity = fuel_capacity
+        self.fuel_amount = 0
 
-    def get_data(self):
-        return self.__data
+    @property
+    def make(self):
+        return self.__make
 
-    def add(self, element):
-        if not type(element) == int:
-            raise ValueError("Element is not Integer")
-        self.get_data().append(element)
-        return self.get_data()
+    @make.setter
+    def make(self, new_value):
+        if not new_value:
+            raise Exception("Make cannot be null or empty!")
+        self.__make = new_value
 
-    def remove_index(self, index):
-        if index >= len(self.get_data()):
-            raise IndexError("Index is out of range")
-        a = self.get_data()[index]
-        del self.get_data()[index]
-        return a
+    @property
+    def model(self):
+        return self.__model
 
-    def get(self, index):
-        if index >= len(self.get_data()):
-            raise IndexError("Index is out of range")
-        return self.get_data()[index]
+    @model.setter
+    def model(self, new_value):
+        if not new_value:
+            raise Exception("Model cannot be null or empty!")
+        self.__model = new_value
 
-    def insert(self, index, el):
-        if index >= len(self.get_data()):
-            raise IndexError("Index is out of range")
-        elif not type(el) == int:
-            raise ValueError("Element is not Integer")
+    @property
+    def fuel_consumption(self):
+        return self.__fuel_consumption
 
-        self.get_data().insert(index, el)
+    @fuel_consumption.setter
+    def fuel_consumption(self, new_value):
+        if new_value <= 0:
+            raise Exception("Fuel consumption cannot be zero or negative!")
+        self.__fuel_consumption = new_value
 
-    def get_biggest(self):
-        a = sorted(self.get_data(), reverse=True)
-        return a[0]
+    @property
+    def fuel_capacity(self):
+        return self.__fuel_capacity
 
-    def get_index(self, el):
-        return self.get_data().index(el)
+    @fuel_capacity.setter
+    def fuel_capacity(self, new_value):
+        if new_value <= 0:
+            raise Exception("Fuel capacity cannot be zero or negative!")
+        self.__fuel_capacity = new_value
+
+    @property
+    def fuel_amount(self):
+        return self.__fuel_amount
+
+    @fuel_amount.setter
+    def fuel_amount(self, new_value):
+        if new_value < 0:
+            raise Exception("Fuel amount cannot be negative!")
+        self.__fuel_amount = new_value
+
+    def refuel(self, fuel):
+        if fuel <= 0:
+            raise Exception("Fuel amount cannot be zero or negative!")
+        self.__fuel_amount += fuel
+        if self.__fuel_amount > self.__fuel_capacity:
+            self.__fuel_amount = self.__fuel_capacity
+
+    def drive(self, distance):
+        needed = (distance / 100) * self.__fuel_consumption
+
+        if needed > self.__fuel_amount:
+            raise Exception("You don't have enough fuel to drive!")
+
+        self.__fuel_amount -= needed
